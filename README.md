@@ -23,8 +23,7 @@ recipe-api-backend/
 │   └── recipeModel.js      # Mongoose schema
 ├── routes/
 │   └── recipeRoutes.js     # API routes
-├── app.js                  # Express app setup
-├── server.js               # Server entry point
+├── server.js               # Server entry point & Express setup
 ├── .env                    # Environment variables
 ├── .env.production.example # Production env template
 ├── .gitignore
