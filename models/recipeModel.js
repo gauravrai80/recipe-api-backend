@@ -6,11 +6,6 @@ const mongoose = require('mongoose');
  */
 const recipeSchema = new mongoose.Schema(
     {
-        image: {
-            type: String,
-            required: false, // Optional field for recipe image URL
-            trim: true
-        },
         title: {
             type: String,
             required: [true, 'Recipe title is required'],

@@ -90,7 +90,7 @@ Before deploying, ensure you have:
    - **Name**: `recipe-api` (or your preferred name)
    - **Region**: Choose closest to you
    - **Branch**: `main`
-   - **Root Directory**: `backend`
+   - **Root Directory**: Leave blank (files are at root)
    - **Runtime**: `Node`
    
    **Build & Deploy:**
@@ -225,8 +225,8 @@ After deployment, submit these URLs:
 - Verify database user credentials
 
 **Issue: 404 on all endpoints**
-- Check Root Directory is set to `backend`
 - Verify routes are correctly mounted in `app.js`
+- Check that server is running on correct PORT
 
 **Issue: Server not starting**
 - Check environment variables in Render
