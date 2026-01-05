@@ -28,8 +28,6 @@ recipe-api-backend/
 ├── .env.production.example # Production env template
 ├── .gitignore
 ├── package.json
-├── DEPLOYMENT_GUIDE.md     # Deployment instructions
-├── POSTMAN_COLLECTION.json # API testing collection
 └── README.md
 ```
 
@@ -203,32 +201,68 @@ The API returns appropriate HTTP status codes:
 }
 ```
 
-## 🚢 Deployment
+## 🚢 Deployment to Render
 
-### Deploy to Render
+### Step 1: Prepare MongoDB Atlas
 
-1. **Create a new Web Service on Render**
+1. **Create MongoDB Atlas Account** at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+2. **Create a Free Cluster** (M0 Sandbox)
+3. **Create Database User**:
+   - Go to "Database Access"
+   - Add new user with username and password
+   - Grant "Read and write to any database" privileges
+4. **Whitelist IP Addresses**:
+   - Go to "Network Access"
+   - Add IP: `0.0.0.0/0` (Allow from anywhere)
+5. **Get Connection String**:
+   - Click "Connect" on your cluster
+   - Choose "Connect your application"
+   - Copy the connection string
+   - Replace `<password>` with your database password
+   - Example: `mongodb+srv://username:password@cluster.mongodb.net/recipes-app`
 
-2. **Connect your GitHub repository**
+### Step 2: Deploy to Render
 
-3. **Configure build settings**
-   - Build Command: `npm install`
-   - Start Command: `npm start`
+1. **Push code to GitHub** (if not already done)
 
-4. **Add environment variables**
-   ```
-   MONGO_URI=your_mongodb_atlas_connection_string
-   PORT=5000
-   NODE_ENV=production
-   FRONTEND_URL=your_frontend_url
-   ```
+2. **Create Render Account** at [render.com](https://render.com)
 
-5. **Deploy**
+3. **Create New Web Service**:
+   - Click "New +" → "Web Service"
+   - Connect your GitHub repository
+   - Select `recipe-api-backend` repository
 
-### MongoDB Atlas Setup
+4. **Configure Service**:
+   - **Name**: `recipe-api` (or your choice)
+   - **Region**: Choose closest to you
+   - **Branch**: `main`
+   - **Root Directory**: Leave blank
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
 
+5. **Add Environment Variables**:
+   
+   Click "Advanced" → Add these variables:
+   
+   | Key | Value |
+   |-----|-------|
+   | `MONGO_URI` | Your MongoDB Atlas connection string |
+   | `PORT` | `5000` |
+   | `NODE_ENV` | `production` |
 
-1. Get your connection string
+6. **Deploy**: Click "Create Web Service"
+
+7. **Verify**: Check logs for "MongoDB Connected" and "Server running"
+
+### Testing Your Deployed API
+
+Your API will be available at: `https://your-service-name.onrender.com`
+
+Test endpoints:
+- Health check: `GET https://your-service-name.onrender.com/health`
+- Get all recipes: `GET https://your-service-name.onrender.com/api/recipes`
+- Create recipe: `POST https://your-service-name.onrender.com/api/recipes`
 
 
 ## 🔒 Security Best Practices
