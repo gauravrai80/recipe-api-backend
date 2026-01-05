@@ -257,12 +257,12 @@ The API returns appropriate HTTP status codes:
 
 ### Testing Your Deployed API
 
-Your API will be available at: `https://your-service-name.onrender.com`
+Your API will be available at: `https://recipe-api-backend-gxte.onrender.com`
 
 Test endpoints:
-- Health check: `GET https://your-service-name.onrender.com/health`
-- Get all recipes: `GET https://your-service-name.onrender.com/api/recipes`
-- Create recipe: `POST https://your-service-name.onrender.com/api/recipes`
+- Health check: `GET https://recipe-api-backend-gxte.onrender.com/health`
+- Get all recipes: `GET https://recipe-api-backend-gxte.onrender.com/api/recipes`
+- Create recipe: `https://recipe-api-backend-gxte.onrender.com/api/recipes`
 
 
 ## 🔒 Security Best Practices
